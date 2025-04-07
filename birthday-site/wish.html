@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0f2027;
+      background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: white;
+    }
+
+    h1 {
+      font-size: 4rem;
+      color: #ffd700;
+      text-shadow: 0 0 20px #fff, 0 0 30px #ffd700, 0 0 40px #ff8c00;
+      animation: glow 2s infinite alternate;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-top: 20px;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #ffd700, 0 0 20px #ff8c00;
+      }
+      to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #ffd700;
+      }
+    }
+
+    .balloons {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 50px;
+      height: 70px;
+      background-color: #ff4081;
+      border-radius: 50% 50% 45% 45%;
+      animation: float 8s infinite ease-in;
+    }
+
+    .balloon::after {
+      content: '';
+      position: absolute;
+      top: 70px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: #444;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎂 Happy Birthday Baishaki!🎂</h1>
+  <p>Wishing you love, laughter, and happiness today and every day. Let's celebrate!</p>
+
+  <div class="balloons" id="balloons"></div>
+
+  <script>
+    const colors = ['#ff4081', '#4fc3f7', '#ffd54f', '#a1887f', '#ab47bc'];
+
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.className = 'balloon';
+      balloon.style.left = Math.random() * 100 + 'vw';
+      balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      balloon.style.animationDuration = 5 + Math.random() * 4 + 's';
+      document.getElementById('balloons').appendChild(balloon);
+
+      setTimeout(() => balloon.remove(), 9000);
+    }
+
+    setInterval(createBalloon, 400);
+  </script>
+</body>
+</html>
